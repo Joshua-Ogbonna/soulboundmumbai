@@ -5,15 +5,15 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import Layout from "src/layout";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
-import { polygon } from "@wagmi/chains";
+import { polygon,polygonMumbai } from "@wagmi/chains";
 export default function App({ Component, pageProps }: AppProps) {
   const { chains, provider } = configureChains(
-    [polygon],
+    [polygonMumbai],
     [
       jsonRpcProvider({
         rpc: (chain: any) => ({
-          http: `https://polygon-mainnet.g.alchemy.com/v2/tiuYdkP4DRSPX1otnf6jf7eraBLAgF6s`,
-          webSocket: `wss://polygon-mainnet.g.alchemy.com/v2/tiuYdkP4DRSPX1otnf6jf7eraBLAgF6s`,
+          http: `https://polygon-mumbai.g.alchemy.com/v2/mlB80DYguB4KcD4G6Cd349v9S7TGxxMk`,
+          webSocket: `wss://polygon-mumbai.g.alchemy.com/v2/mlB80DYguB4KcD4G6Cd349v9S7TGxxMk`,
         }),
       }),
     ]
