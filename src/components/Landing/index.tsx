@@ -12,11 +12,11 @@ function Landing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const soulbound = "0xa6F9B0194CaebC7E0845741AA0bEAbBaE10b657b";
+  const soulbound = "0x21b02720bb2d06dd0e1cff7756137535410fae67";
   const { address } = useAccount();
   const { data, write } = useContractWrite({
     mode: "recklesslyUnprepared",
-    address: "0xa6F9B0194CaebC7E0845741AA0bEAbBaE10b657b",
+    address: "0x21b02720bb2d06dd0e1cff7756137535410fae67",
     abi: [
       {
         inputs: [],
@@ -36,7 +36,7 @@ function Landing() {
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(data) {
-      router.push(`https://testnets.opensea.io/account`);
+      router.push(`https://opensea.io/account`);
     },
     onError(err) {
       // console.log(err.message);
@@ -44,37 +44,7 @@ function Landing() {
     },
   });
 
-  // async function handleGaslessTxn() {
-  //   if (typeof window.ethereum !== 'undefined') {
-  //     const biconomy = new Biconomy(
-  //       window.ethereum as ExternalProvider,
-  //       {
-  //         apiKey: process.env.NEXT_PUBLIC_BICONOMY_API_KEY as string,
-  //         debug: true,
-  //         contractAddresses: [soulbound]
-  //       }
-  //     );
-  //     const provider = await biconomy.provider;
-
-  //     const contractInstance = new ethers.Contract(
-  //       soulbound,
-  //       soulboundAbi,
-  //       biconomy.ethersProvider
-  //     );
-  //     await biconomy.init();
-
-  //     const { data } = await contractInstance.populateTransaction.certMint()
-
-  //     let txParams = {
-  //       data: data,
-  //       to: soulbound,
-  //       from: address,
-  //       signatureType: "EIP712_SIGN",
-  //     };
-  //     // @ts-ignore
-  //     await provider.send("eth_sendTransaction", [txParams]);
-  //   }
-  // }
+  
 
   async function handleGaslessTxn() {
     try {
@@ -109,7 +79,7 @@ function Landing() {
           toast.error(tx.reason);
         } else {
           toast.success("successfully minted");
-          router.push(`https://testnets.opensea.io/account`);
+          router.push(`https://opensea.io/account`);
         }
 
         setLoading(false);
